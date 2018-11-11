@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.serenitybdd.starter</groupId>
+    <artifactId>ford-lincoln-test-automation</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Serenity BDD project using Cucumber</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <serenity.version>1.8.1</serenity.version>
+        <serenity.maven.version>1.8.0</serenity.maven.version>
+        <serenity.cucumber.version>1.6.5</serenity.cucumber.version>
+        <encoding>UTF-8</encoding>
+        <tags></tags>
+        <webdriver.base.url></webdriver.base.url>
+    </properties>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>bintray-plugins</name>
+            <url>http://jcenter.bintray.com</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay-webdriver</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-cucumber</artifactId>
+            <version>${serenity.cucumber.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+        </dependency>
+        	
+		<dependency>
+			<groupId>ru.yandex.qatools.ashot</groupId>
+			<artifactId>ashot</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.im4java</groupId>
+			<artifactId>im4java</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-htmlunit-driver</artifactId>
+			<version>2.52.0</version>
+		</dependency>        	
+        	
+        	<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
+                <configuration>
+                    <skip>true</skip>
+                    <systemPropertyVariables>
+						<profileId>${project.activeProfiles[0].id}</profileId>
+						<isJenkinsJob>${isJenkinsJob}</isJenkinsJob>
+						<executionfor>${test}</executionfor>
+					</systemPropertyVariables>
+					<testFailureIgnore>true</testFailureIgnore>
+					<argLine>-Xmx1024m</argLine>
+					<!-- <forkMode>once</forkMode>
+                		<argLine>-javaagent:serenity/serenity.jar -Xms512m -Xmx1024m ${included.packages} ${included.adapters}</argLine>	 -->				
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.20</version>
+                <configuration>
+                 <includes>
+                    		<include>**/*${test}*Test.java</include>
+                    		<!-- <include>P1FordTest</include>
+                    		<include>P2FordTest</include> 
+                    		<include>P3FordTest</include>
+                    		<include>P1LincolnTest</include>
+                    		<include>P2LincolnTest</include>
+                        <include>**/*Test.java</include>
+                        <include>**/Test*.java</include>
+                        <include>**/*TestSuite.java</include>
+                        <include>**/When*.java</include> -->
+                    </includes>
+                  <!--<includes>
+                    		<include>P1FordTest</include>
+                    		<include>P2FordTest</include> 
+                    		<include>P3FordTest</include>
+                    		<include>P1LincolnTest</include>
+                    		<include>P2LincolnTest</include>
+                        <include>**/*Test.java</include>
+                        <include>**/Test*.java</include>
+                        <include>**/*TestSuite.java</include>
+                        <include>**/When*.java</include>
+                    </includes> -->
+
+
+					<!-- <properties>
+						<tasks>
+							<taskdef resource="net/sf/antcontrib/antcontrib.properties"
+								classpathref="maven.plugin.classpath" />
+							<if>
+								<condition>
+									<equals arg1="parallel" />
+								</condition>
+								<then>
+									<includes>
+										<include>P1FordTest</include>
+										<include>P2FordTest</include> <include>P3FordTest</include>
+									</includes>
+								</then>
+							</if>
+				
+							<if>
+								<condition>
+									<equals arg1="${env.WAS85_HOME}" />
+								</condition>
+								<then>
+									<javac>${was85.home}/java/bin/javac</javac>
+								</then>
+							</if>
+						</tasks>
+					</properties>      -->               
+                    
+                    
+                    
+                                        
+                    <systemPropertyVariables>
+                        <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+                    </systemPropertyVariables>
+                    <parallel>classes</parallel>
+                    <threadCount>5</threadCount>
+                    <forkCount>5</forkCount>
+                    <systemPropertyVariables>
+						<profileId>${project.activeProfiles[0].id}</profileId>
+						<jenkinsId>${isJenkinsBuild}</jenkinsId>
+						<executionfor>${test}</executionfor>
+					</systemPropertyVariables>
+					<testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.maven.version}</version>
+                <configuration>
+                  <tags>${tags}</tags>
+				  <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>serenity-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+    	<profiles>
+		<profile>
+			<id>perf</id>
+			<properties>
+				<environment>wwwperf</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>int</id>
+			<properties>
+				<environment>wwwint</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<environment>wwwdev</environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>qa</id>
+			<properties>
+				<environment>wwwqa</environment>
+			</properties>
+		</profile>		
+	</profiles>
+</project>
