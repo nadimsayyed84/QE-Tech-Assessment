@@ -1,0 +1,31 @@
+2019-06-12T08:30:58.050Z INFO @wdio/local-runner: Run worker command: run
+2019-06-12T08:30:58.274Z DEBUG @wdio/utils:initialiseServices: initialise wdio service "appium"
+2019-06-12T08:30:58.832Z DEBUG @wdio/local-runner:utils: init remote session
+2019-06-12T08:31:30.200Z ERROR webdriver: Request failed due to unknown error: An unknown server-side error occurred while processing the command. Original error: Unable to launch WebDriverAgent because of xcodebuild failure: xcodebuild failed with code 65
+xcodebuild error message:
+
+2019-06-12 16:31:29.738 xcodebuild[17393:447883]  iPhoneConnect: 📱<DVTiOSDevice (0x7f85ee835800), PG iPhone 8plus, iPhone, 11.3 (15E216), a5d7b3fcdbbc8b765fbd6f1bcdb92e5a7520628f> failed to install /Users/a747428/Library/Developer/Xcode/DerivedData/WebDriverAgent-dikkwtrisltbeobjmfvpthwwekvs/Build/Products/Debug-iphoneos/WebDriverAgentRunner-Runner.app - error Error Domain=com.apple.dtdevicekit Code=-402620392 "Unable to install "WebDriverAgentRunner-Runner"" UserInfo={NSLocalizedDescription=Unable to install "WebDriverAgentRunner-Runner", NSLocalizedRecoverySuggestion=The certificate used to sign "WebDriverAgentRunner-Runner" has either expired or has been revoked. An updated certificate is required to sign and install the application.}
+2019-06-12 16:31:29.747 xcodebuild[17393:447660] [MT] IDETestOperationsObserverDebug: 1.379 elapsed -- Testing started completed.
+2019-06-12 16:31:29.747 xcodebuild[17393:447660] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2019-06-12 16:31:29.747 xcodebuild[17393:447660] [MT] IDETestOperationsObserverDebug: 1.379 sec, +1.379 sec -- end
+2019-06-12 16:31:29.747 xcodebuild[17393:447660] Error Domain=com.apple.dtdevicekit Code=-402620392 "Unable to install "WebDriverAgentRunner-Runner"" UserInfo={NSLocalizedDescription=Unable to install "WebDriverAgentRunner-Runner", NSLocalizedRecoverySuggestion=The certificate used to sign "WebDriverAgentRunner-Runner" has either expired or has been revoked. An updated certificate is required to sign and install the application.}
+Testing failed:
+	No profiles for 'com.facebook.WebDriverAgentRunner' were found: Xcode couldn't find any iOS App Development provisioning profiles matching 'com.facebook.WebDriverAgentRunner'. Automatic signing is disabled and unable to generate a profile. To enable automatic signing, pass -allowProvisioningUpdates to xcodebuild. (in target 'WebDriverAgentRunner')
+	No signing certificate "iOS Development" found: No "iOS Development" signing certificate matching team ID "5L4N3GPUMW" with a private key was found. (in target 'WebDriverAgentLib')
+	WebDriverAgentRunner:
+		WebDriverAgentRunner-Runner.app encountered an error (Failed to install or launch the test runner. (Underlying error: Unable to install "WebDriverAgentRunner-Runner"))
+Test session results and logs:
+	/Users/a747428/Library/Developer/Xcode/DerivedData/WebDriverAgent-dikkwtrisltbeobjmfvpthwwekvs/Logs/Test/Test-WebDriverAgentRunner-2019.06.12_16-31-28-+0800.xcresult
+** TEST EXECUTE FAILED **
+*** If you believe this error represents a bug, please attach the result bundle at /Users/a747428/Library/Developer/Xcode/DerivedData/WebDriverAgent-dikkwtrisltbeobjmfvpthwwekvs/Logs/Test/Test-WebDriverAgentRunner-2019.06.12_16-31-28-+0800.xcresult
+Testing started on 'PG iPhone 8plus'. Make sure you follow the tutorial at https://github.com/appium/appium-xcuitest-driver/blob/master/docs/real-device-config.md. Try to remove the WebDriverAgentRunner application from the device if it is installed and reboot the device.
+    at getErrorFromResponseBody (/Users/a747428/Downloads/pg-native-master/node_modules/webdriver/build/utils.js:350:10)
+    at Request._callback (/Users/a747428/Downloads/pg-native-master/node_modules/webdriver/build/request.js:121:64)
+    at Request.self.callback (/Users/a747428/Downloads/pg-native-master/node_modules/request/request.js:185:22)
+    at emitTwo (events.js:135:13)
+    at Request.emit (events.js:224:7)
+    at Request.<anonymous> (/Users/a747428/Downloads/pg-native-master/node_modules/request/request.js:1161:10)
+    at emitOne (events.js:125:13)
+    at Request.emit (events.js:221:7)
+    at IncomingMessage.<anonymous> (/Users/a747428/Downloads/pg-native-master/node_modules/request/request.js:1083:12)
+    at Object.onceWrapper (events.js:322:30)
